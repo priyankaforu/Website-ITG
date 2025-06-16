@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">  
+    <link rel="icon" href="Styles/images/icon.svg" type="image/svg">
+    <link rel="stylesheet" href="Styles/header.css">
+    <link rel="stylesheet" href="Styles/calculator.css">
+    <link rel="stylesheet" href="Styles/section4.css">
+   
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <h1>Convert your Local grade to German Grade</h1>
+        
+        <div class="description">
+            <p>Usually Indian or Most of the Asian countries evaluate the score for the grade in between 1-10. 1 means the lowest and 10 means the highest. And the minimum grade to pass the degree is 4.</p>
+            <br>
+            <p>But Germany evaluates the score between 1-4. 1 is the best possible grade and 4 is the minimum grade to pass the course</p>
+        </div>
+        
+            <div class="form-group">
+                <label for="cgpa">Your score should be in GPA (1-10)</label>
+                <label for="cgpa" style="font-weight: bold; font-family:Poppins; font-size: 14px;">What is your CGPA ?</label>
+                <input type="text" id="cgpa" placeholder="Enter the your final grade here">
+            </div>
+
+            <div class="form-group">
+                <label for="max-grade">What is the best possible grade?</label>
+                <input type="text" id="max-grade" placeholder="Enter the max grade you can get">
+            </div>
+
+            <div class="form-group">
+                <label for="passing-grade">What is the passing grade?</label>
+                <input type="text" id="passing-grade" placeholder="Enter the min grade, you need to pass">
+            </div>
+
+            <button class="convert-btn">Convert</button>
+
+            <div class="result" id="result" style="display: none">
+                <h2>Your German Grade: <span id="german-grade">1</span></h2>
+                <p>Chances: <span id="chances">Excellent</span></p>
+            </div>
+    </div>
+    <div id="footer-main"></div>
+    <script>
+        
+        let finalGPA = document.getElementById('cgpa');
+        let maxGPA = document.getElementById('max-grade');
+        let minGPA = document.getElementById('passing-grade');
+        let convertBtn = document.querySelector('.convert-btn');
+        let result = document.getElementById('result');
+        
+        let maxGPAVal,minGPAVal,finalGPAVal,convertedVal;
+    
+
+        convertBtn.addEventListener("click",()=>{
+            
+            maxGPAVal = parseFloat(maxGPA.value);
+            finalGPAVal = parseFloat(finalGPA.value);
+            minGPAVal = parseFloat(minGPA.value);
+            
+            updating(finalGPAVal,maxGPAVal,minGPAVal);
+            
+        });
+        
+        function getCalculation(final,max,min){
+            let finalGrade,maxGrade,minGrade;
+            if((final>0 && final<=10) && (typeof final==='number')){
+                finalGrade = final;
+            }
+            if((max>0 && max<=10) && (typeof max==='number')){
+                maxGrade = max;
+            }
+            if((min>0 && min<=10) && (typeof min==='number')){
+                minGrade = min;
+            }
+            let total = (maxGrade-finalGrade)/(maxGrade-minGrade);
+            totalValue = (total*3)+1;
+            if(totalValue>=1 && totalValue<=4){
+                return totalValue;
+            }else{
+                return undefined;
+            }
+        }
+        
+
+        function updating(finalGPAVal,maxGPAVal,minGPAVal){
+            let chances;
+            convertedVal = getCalculation(finalGPAVal,maxGPAVal,minGPAVal);
+            if(convertedVal!==undefined){
+                if(convertedVal>2.5 && convertedVal<3.0){
+                    chances="decent chances";
+                }
+                if(convertedVal<=2.5 && convertedVal>1.5){
+                    chances="great chances";
+                }
+                if(convertedVal<=1.5 && convertedVal>=1.0){
+                    chances="Excellent chances"
+                }
+                if(convertedVal>=3.0){
+                    chances="very few chances"
+                }
+                result.innerHTML =`
+                <h2>Your German Grade: <span id="german-grade">${convertedVal.toFixed(2)}</span></h2>
+                <p>Chances: <span id="chances"><strong>You have ${chances} to study in Germany</strong></span></p>
+                `
+                result.style.display="block";
+            }else{
+                result.innerHTML =`
+                <h2><span id="german-grade">Please Check Your Entries and Enter Valid Inputs</span></h2>
+                `
+                result.style.display="block";
+            }
+        }
+      
+    </script>
+    <script src="Scripts/headerscript.js"></script>
+    <script src="Scripts/footer.js"></script>
+
+</body>
+</html>

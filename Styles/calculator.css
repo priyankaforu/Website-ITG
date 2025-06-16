@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    background-color: white;
+    color: black;
+    line-height: 1.6;
+   
+}
+
+.container {
+    max-width: 600px;
+    margin: 10% auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 30px;
+    width: 90vw;
+    
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.description {
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+    color: black;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #333;
+}
+
+.convert-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 30px;
+    background-color: rgb(0, 255, 255);
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.convert-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.result {
+    margin-top: 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
+
+.result h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.result p {
+    font-size: 16px;
+}
+
+@media (max-width: 800px) {
+    .container {
+        padding: 20px;
+        margin-top: 16%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .convert-btn {
+        padding: 10px 25px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+        margin-top: 16%;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+}
